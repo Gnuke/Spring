@@ -1,0 +1,9 @@
+package com.example.demo;
+
+import org.springframework.stereotype.Controller;
+
+//stereotype : 클래스 종류
+@Controller
+public class HomeController {
+
+}

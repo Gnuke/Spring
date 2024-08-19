@@ -1,0 +1,13 @@
+package com.example.demo;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+//stereotype : 클래스 종류
+@Controller
+public class HomeController {
+	@GetMapping("/") // get 요청만 받음
+	public String home() {	// 요청을 처리하는 메서드는 view page 경로를 반환
+		return "index";
+	}
+}
