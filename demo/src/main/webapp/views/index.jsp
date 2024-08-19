@@ -8,7 +8,10 @@
 </head>
 <body>
 	<h3>hello spring</h3>
-	<a href="/member/join">회원가입</a><br />
-	<a href="/member/login">로그인</a><br />
+	<button type="button" onclick="location.href='/mem/join'">회원가입</button>
+	<button type="button" onclick="location.href='/mem/get'">검색</button>
+	<button type="button" onclick="location.href='/mem/getall'">전체 검색</button>
+	<button type="button" onclick="location.href='/mem/edit'">수정</button> 
+	<button type="button" onclick="location.href='/mem/del'">삭제</button> 
 </body>
 </html>
