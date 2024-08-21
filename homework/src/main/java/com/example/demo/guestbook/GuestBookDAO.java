@@ -1,85 +1,68 @@
 package com.example.demo.guestbook;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
-import conn.DBConnection;
 
 @Repository
 public class GuestBookDAO {
-	private DBConnection dbconn;
+	@Autowired
+	private JdbcTemplate temp; // 사용할 JdbcTemplate 객체 의존성 주입
 	
-	public GuestBookDAO() {
-		// TODO Auto-generated constructor stub
-		dbconn = DBConnection.getInstance();
+	//resultMap 정의
+	public class GuestResultMap implements RowMapper<GuestBook>{
+		
+		//ResultSet의 한 행을 처리. Param으로 처리해야할 행 번호를 받음 -> int rowNum
+		//각 컬럼을 vo 생성자 Param에 Mapping
+		@Override
+		public GuestBook mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			return new GuestBook(rs.getInt(1), rs.getString(2), rs.getString(3), 
+					rs.getDate(4), rs.getString(5) );
+		}
 	}
 	
 	//write-----------------------------------------------------------------
 	public void write(GuestBook gb) {
-		Connection conn = dbconn.getConn();
-		String sql = "INSERT INTO guestbook ( writer, pwd, wdate, content)";
-		sql += " VALUES ( ?, ?, sysdate(), ? )";
-		
+		String sql = "INSERT INTO guestbook(writer, pwd, wdate, content)";
+		sql += " VALUES (?,?,sysdate(),?)";
+		temp.update(sql, new Object[] {gb.getWriter(), gb.getPwd(), gb.getContent()});
+	}
+	
+	//selectOne--------------------------------------------------------
+	public GuestBook select(int num) {
+		String sql = "SELECT * FROM guestbook WHERE num=?";
+		GuestBook gb = null;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, gb.getWriter() );
-			pstmt.setString(2, gb.getPwd() );
-			pstmt.setString(3, gb.getContent() );
-			
-			pstmt.executeUpdate();
-			pstmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			if( conn != null )
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			gb = temp.queryForObject(sql, new GuestResultMap(), num);
+		}catch(Exception e) {
+			System.out.println(e);
 		}
+		return gb;
 	}
 	
 	//selectAll---------------------------------------------------------------------
 	public ArrayList<GuestBook> selectAll(){
-		Connection conn = dbconn.getConn();
-		ResultSet rs = null;
+		String sql = "SELECT * FROM guestbook ORDER BY num";
 		
-		ArrayList<GuestBook> list = new ArrayList<GuestBook>();
-		String sql = "SELECT num, writer, pwd, DATE_FORMAT(wdate, '%Y/%m/%d') AS wdate, content FROM guestbook order by num desc";
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while( rs.next() ) {
-				list.add( new GuestBook( rs.getInt(1), rs.getString(2), rs.getString(3),
-						rs.getString(4), rs.getString(5) ) );
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.getMessage();
-		}finally {
-			if(conn != null )
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		}
-		
-		System.out.println( "나는 리스트 : " + list );
-		return list;
+		return (ArrayList<GuestBook>) temp.query(sql, new GuestResultMap());
 	}
 	
+	//update----------------------------------------------------------------------
+	public void update(GuestBook gb) {
+		String sql = "UPDATE guestbook SET content=? WHERE num=?";
+		temp.update(sql, new Object[] {gb.getContent(), gb.getNum()});
+	}
 	
+	//delete-----------------------------------------------------------------------
+	public void delete(int num) {
+		String sql = "DELETE FROM guestbook WHERE num=?";
+		temp.update(sql, num);
+	}
 	
 }

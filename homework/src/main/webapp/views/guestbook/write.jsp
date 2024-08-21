@@ -13,7 +13,7 @@
 		pwd : <input type="password" name="pwd"><br />
 		content : <br /><textarea name="content"></textarea><br />
 		<input type="submit" value="작성">
-		<button type="button" onclick="location.href='index'">취소</button>
+		<button type="button" onclick="location.href='/'">취소</button>
 	</form>
 </body>
 </html>
