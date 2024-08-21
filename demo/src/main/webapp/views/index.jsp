@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h3>hello spring</h3>
+	${sessionScope.loginId } 로그인 중 <br />
 	<button type="button" onclick="location.href='/mem/join'">회원가입</button>
 	<button type="button" onclick="location.href='/mem/get'">검색</button>
 	<button type="button" onclick="location.href='/mem/getall'">전체 검색</button>
