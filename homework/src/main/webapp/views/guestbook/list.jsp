@@ -16,7 +16,7 @@
 		<c:forEach var="c" items="${list }">
 			<tr>
 				<td>${c.num }</td>
-				<td><a href="/guestbook/content?id=${c.num }">${c.writer }</a></td>
+				<td><a href="/guestbook/content?num=${c.num }">${c.writer }</a></td>
 				<td>${c.wdate }</td>
 			</tr>
 		</c:forEach>
