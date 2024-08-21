@@ -27,11 +27,17 @@ public class GuestBookController {
 		return "index";
 	}
 	
-	//selectAll---------------------------------------
+	//검색---------------------------------------
 	@RequestMapping("/list")
 	public String list(Model m) {
 		m.addAttribute( "list", service.selectAll() );
 		return "/guestbook/list";
+	}
+	
+	@GetMapping("/content")
+	public String content( int num, Model m ) {
+		
+		return "guestbook/content";
 	}
 
 }
