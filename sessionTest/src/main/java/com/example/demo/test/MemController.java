@@ -125,4 +125,12 @@ public class MemController {
 		session.setAttribute( "type", m.getType() );
 		return "redirect:/";
 	}
+	
+	//탈퇴-----------------------------------------------------------------------
+	@GetMapping("/out")
+	public String out(HttpSession session) {
+		String loginId = (String)session.getAttribute("loginId");
+		service.delMem(loginId);
+		return "redirect:/test/logout";
+	}
 }

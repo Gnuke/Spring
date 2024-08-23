@@ -16,8 +16,8 @@
 	${sessionScope.loginId }님의 타입은 ${sessionScope.type }입니다.<br />
 	<button type="button" onclick="location.href='/test/logout'">로그아웃</button>
 	<button type="button" onclick="location.href='/member/myinfo'">내정보확인</button>
-	<button type="button" >탈퇴</button>
-	<button type="button" >게시판</button>
+	<button type="button" onclick="location.href='/member/out'">탈퇴</button>
+	<button type="button" onclick="location.href='/board/list'">게시판</button>
 </c:if><br />
 	${msg }<br />
 </body>

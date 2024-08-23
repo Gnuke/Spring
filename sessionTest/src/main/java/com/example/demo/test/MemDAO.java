@@ -52,11 +52,11 @@ public class MemDAO {
 	}
 	
 	//login 시------------------------------------------------
-	public void selectMy(HttpSession session) {
-		String sql = "SELECT * FROM member WHERE id=?";
-		
-		temp.queryForObject(sql, new MemResultMap(), session.getAttribute("loginId").toString());
-	}
+//	public void selectMy(HttpSession session) {
+//		String sql = "SELECT * FROM member WHERE id=?";
+//		
+//		temp.queryForObject(sql, new MemResultMap(), session.getAttribute("loginId").toString());
+//	}
 	
 	
 	//update---------------------------------------------
