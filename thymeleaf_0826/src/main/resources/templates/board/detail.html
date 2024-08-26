@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상세 페이지</title>
+<script type="text/javascript">
+		const update = (actionUrl) => {
+			let form = document.getElementById('insertForm');
+			form.method = 'get';
+			form.action = actionUrl;
+			form.submit();
+		}
+		const del = () => {
+			location.href = "/board/del?num=[[${b.num}]]";
+		}
+	</script>
+</head>
+<body>
+	<h3>상세 페이지</h3>
+	<form action="/board/insert" method="post" id="insertForm">
+	<input type="hidden" name="num" th:value="${b.num }">
+	<table>
+		<tr>
+			<th>작성자</th>
+			<td><input type="text" th:value="${b.writer }" readonly></td>
+		</tr>
+		<tr>
+			<th>글 제목</th>
+			<td><input type="text" name="title"  th:value="${b.title }"></td>
+		</tr>
+		<tr>
+			<th>작성일</th>
+			<td><input type="text" th:value="${b.wdate }" readonly></td>
+		</tr>
+		<tr>
+			<th>글 내용</th>
+			<td><textarea rows="5" cols="30" name="content">[[${b.content }]]</textarea></td>
+		</tr>
+		<tr th:if="${session.loginId == b.writer}">
+			<td>편집</td>
+			<td>
+				<button type="button" onclick="update('/board/update')">글수정</button>
+				<button type="button" onclick="del()">글삭제</button>
+			</td>
+		</tr>
+	</table>
+	</form>
+	<button type="button" onclick="location.href='/member/'">뒤로가기</button>
+	
+</body>
+</html>

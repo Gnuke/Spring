@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원정보수정</title>
+<script type="text/javascript">
+	const edit = () => {
+		let inputs = document.querySelectorAll("input[type='text' ]")
+		
+		inputs.forEach(input => {
+			if( input.value.trim() === ""){
+				input.value = input.placeholder;
+			}
+		});
+		
+		document.getElementById("editForm").submit();
+	}
+</script>
+</head>
+<body>
+	<h1>수정 폼</h1>
+	<form id="editForm" action="/member/edit" method="post">
+	<table>
+		<tr>
+			<td>
+				아이디 : [[${myinfo.id }]]
+				<input type="hidden" name="id" th:value="${myinfo.id }">
+				<input type="hidden" name="pwd" th:value="${myinfo.pwd }">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				이름 : <input type="text" name="name" th:placeholder="${myinfo.name }">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				email : <input type="text" name="email" th:placeholder="${myinfo.email }">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				상태 : 
+				<select name="type">
+					<option  th:each="o: ${list}" th:value="${o}" th:text="${o}"></option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<input type="submit" value="정보수정" onclick="edit()"/>
+	<button type="button" onclick="location.href='/member/'">취소</button>
+	</form>
+</body>
+</html>
