@@ -33,17 +33,30 @@ const b = () => {
 	let res = document.getElementById("res");
 	res.innerHTML = "";
 }
+
+const searchType = () => {
+	let type = document.getElementById('gettype').value;
+	let val = document.getElementById('search').value;
+	
+	let url = "/board/getby" + type + "?" + type + "=" + val;
+	alert(url);
+	location.href=url;
+}
 </script>
 </head>
 <body>
 	<h3>게시판</h3>
 	<a href="/board/todayList">오늘 읽은 글 목록</a><br />
-	<select name="gettype">
-		<option>작성자</option>
-		<option>제목</option>
-	</select>
-	<input type="text" name="search">
-	<input type="button" value="검색">
+	
+	<form id="searchForm" method="get">
+		<select id="gettype">
+			<option value="writer">작성자</option>
+			<option value="title">제목</option>
+		</select>
+		<input type="text" id="search">
+		<input type="button" value="검색" onclick="searchType()">
+	</form>
+	
 	<span id="res" style="position:absolute;top:200px;left:300px"></span>
 	<table border="1">
 		<tr><th>num</th><th>title</th><th>writer</th></tr>

@@ -25,10 +25,12 @@ public class BoardService {
 
 	public ArrayList<Board> selectByTitle(String title){
 		return dao.selectByTitle( "%" + title +"%");
+		//return dao.selectByTitle( title );
 	}
 	
 	public ArrayList<Board> selectByWriter(String writer){
 		return dao.selectByWriter( "%" + writer +"%");
+		//return dao.selectByWriter( writer );
 	}
 	
 	public void update(Board b) {

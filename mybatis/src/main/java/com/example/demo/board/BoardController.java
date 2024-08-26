@@ -23,6 +23,19 @@ public class BoardController {
 		return "/board/list";
 	}
 	
+	@GetMapping("/getbytitle")
+	public String getByTitle(String title, Model m) {
+		m.addAttribute("list", service.selectByTitle(title));
+		//System.out.println( m );
+		return "/board/list";
+	}
+	
+	@GetMapping("/getbywriter")
+	public String getByWriter(String writer, Model m) {
+		m.addAttribute("list", service.selectByWriter(writer));
+		return "/board/list";
+	}
+	
 	@GetMapping("/insert")
 	public void insertForm() {}
 	
