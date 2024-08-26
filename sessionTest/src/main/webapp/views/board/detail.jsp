@@ -13,7 +13,7 @@
 		<c:set var="str">readonly</c:set>
 	</c:if>
 	<form action="/board/insert" method="post" id="insertForm">
-	<input type="hidden" value="${b.num }">
+	<input type="hidden" name="num" value="${b.num }">
 	<table>
 		<tr>
 			<th>작성자</th>
@@ -41,6 +41,9 @@
 	<script type="text/javascript">
 		const submitForm = (actionUrl) => {
 			let form = document.getElementById('insertForm');
+			form.method = 'get';
+			form.action = actionUrl;
+			form.submit();
 		}
 	</script>
 </body>

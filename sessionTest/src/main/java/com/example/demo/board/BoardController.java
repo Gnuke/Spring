@@ -59,7 +59,7 @@ public class BoardController {
 		System.out.println( "post update에서 : " + b.getNum());
 		service.update(b);
 		
-		return "redirect:/board/detail";
+		return "redirect:/board/list";
 	}
 	
 	@GetMapping("/del")
