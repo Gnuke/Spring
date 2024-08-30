@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add</title>
+</head>
+<body>
+<h3>상품등록</h3>
+<form action="/product/add" method="post" enctype="multipart/form-data">
+	<table>
+		<tr><th>name : </th><td><input type="text" name="name"></td></tr>
+		<tr><th>price : </th><td><input type="number" name="price"></td></tr>
+		<tr><th>amount : </th><td><input type="number" name="amount"></td></tr>
+		<tr><th>상품이미지 : </th><td><input type="file" name="f"></td></tr>
+		<tr><th>seller : </th>
+		<td><input type="text" name="seller" th:value="${session.loginId}" readonly></td></tr>			
+	</table>
+	<input type="submit" value="상품등록">
+</form>
+<button type="button" onclick="location.href='/'">홈으로</button>
+</body>
+</html>

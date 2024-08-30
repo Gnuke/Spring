@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FileUpload</title>
+</head>
+<body>
+<h3>파일 업로드</h3>
+<form action="/upload/upload" method="post" enctype="multipart/form-data">
+file: <input type="file" name="f"><br />
+title: <input type="text" name="title"><br />
+<input type="submit" value="전송">
+</form>
+<button type="button" onclick="location.href='/upload/list'">파일 목록</button>
+<button type="button" onclick="location.href='/'">홈으로</button>
+</body>
+</html>

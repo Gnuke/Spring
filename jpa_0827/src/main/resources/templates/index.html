@@ -18,6 +18,17 @@
 	<a href="/member/logout">로그아웃</a><br/>
 	<a href="/member/out">탈퇴</a><br/>
 	<a href="/board/list">글목록</a><br/>
+	<div th:if="${session.type == '구매자'}">
+		구매자 메뉴<br />
+		<a href="/product/list">상품목록</a>
+	</div>
+	<div th:if="${session.type == '판매자'}">
+		판매자 메뉴<br />
+		<a href="/product/list">내상품목록</a>
+		<a href="/product/add">상품등록</a>
+	</div>
+	<button type="button" onclick="location.href='/upload/list'">파일목록</button>
+	<button type="button" onclick="location.href='/upload/form'">파일전송</button>
 </div>
 </body>
 </html>

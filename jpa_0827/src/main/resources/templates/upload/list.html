@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>File List</title>
+</head>
+<body>
+<h3>파일 목록</h3>
+<a href="/upload/form">파일등록</a>
+<ul>
+	<li th:each="f:${files}">
+		[[${f}]]<br />
+		<img th:src="@{/upload/read-img(fname=${f})}">
+	</li>
+</ul>
+<button type="button" onclick="location.href='/'">홈으로</button>
+</body>
+</html>
