@@ -12,22 +12,28 @@ public class UsersService {
 	@Autowired
 	private PasswordEncoder encoder;
 	
-	// 추가 & 수정
+	//추가, 수정
 	public void save(UsersDTO dto) {
-		dao.save(new Users(dto.getId(), encoder.encode(dto.getPwd()), dto.getType()));
+		dao.save(new Users(dto.getId(), encoder.encode(dto.getPwd()),
+				dto.getType()));
 	}
 	
-	// pk 검색
+	//pk 검색
 	public UsersDTO get(String id) {
 		Users entity = dao.findById(id).orElse(null);
-		if( entity != null ) {
-			return new UsersDTO( entity.getId(), entity.getPwd(), entity.getType());
+		if(entity != null) {
+			return new UsersDTO(entity.getId(),entity.getPwd(), 
+					entity.getType());
 		}
 		return null;
 	}
 	
-	// 삭제
-	public void delete(String id) {
+	//삭제
+	public void del(String id) {
 		dao.deleteById(id);
 	}
 }
+
+
+
+

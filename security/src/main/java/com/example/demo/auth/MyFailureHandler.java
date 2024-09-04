@@ -9,7 +9,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class MyFailureHandler extends SimpleUrlAuthenticationFailureHandler{
+public class MyFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
@@ -18,4 +19,5 @@ public class MyFailureHandler extends SimpleUrlAuthenticationFailureHandler{
 		this.setDefaultFailureUrl("/autherror");
 		request.setAttribute("msg", "인증 실패");
 	}
+
 }

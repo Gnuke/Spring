@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>구매자 게시판</h3>
+<a href="/auth/info">내정보확인</a><br/>
+<a href="/auth/logout">로그아웃</a><br/>
+<a href="/article/add">글작성</a><br/>
+<table border="1">
+<tr><th>num</th><th>title</th><th>user</th><th>user type</th></tr>
+<tr th:each="a:${list}">
+  <td th:text="${a.num}"></td><td th:text="${a.title}"></td>
+  <td th:text="${a.user.id}"></td><td th:text="${a.user.type}"></td>
+</tr>
+</table>
+</body>
+</html>

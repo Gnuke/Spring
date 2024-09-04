@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>글작성</h3>
+<form action="/article/add" method="post">
+writer:<input type="text" name="user" th:value="${session.loginId}" readonly><br/>
+title:<input type="text" name="title"><br/>
+content:<input type="text" name="content"><br/>
+<input type="submit" value="작성">
+</form>
+</body>
+</html>
