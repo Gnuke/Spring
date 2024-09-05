@@ -16,7 +16,7 @@ public class ServiceTest {
 	
 	@Test
 	void insertTest() {
-		service.saveBook(new GuestbookDTO(0, "bbb", null, "111", "새글내용"));
+//		service.saveBook(new GuestbookDTO(0, "bbb", null, "111", "새글내용"));
 	}
 	
 	@Test
@@ -25,4 +25,15 @@ public class ServiceTest {
 		System.out.println(list);
 	}
 	
+	@Test
+	void editTest() {
+		GuestbookDTO dto = service.getBook(2);
+		if(dto != null) {
+		dto.setWriter("ㅠㅠㅠ");
+		dto.setContent("qwerty");
+		service.saveBook(dto);
+		}else {
+			System.out.println("없는 글");
+		}
+	}
 }
